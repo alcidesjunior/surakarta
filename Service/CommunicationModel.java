@@ -5,6 +5,7 @@ public class CommunicationModel {
     private String message;
     private String moveTo;
     private String dot;
+    private String youTurn;
 
 
     public String getCommunicationType() {
@@ -23,6 +24,10 @@ public class CommunicationModel {
         return dot;
     }
 
+    public String getYouTurn() {
+        return this.youTurn;
+    }
+
     public void setCommunicationType(String communicationType) {
         this.communicationType = communicationType;
     }
@@ -37,5 +42,9 @@ public class CommunicationModel {
 
     public void setDot(String dot) {
         this.dot = dot;
+    }
+
+    public void setYouTurn(String youTurn) {
+        this.youTurn = youTurn;
     }
 }

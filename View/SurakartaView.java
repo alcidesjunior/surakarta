@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class SurakartaView extends JFrame implements ActionListener {
     private ClientSocketGame clientSocketGame;
     private String name;
     private JButton currentButton;
+    private JButton turno;
     private static ArrayList<JButton> dots = new ArrayList<JButton>();
 
     public SurakartaView(ClientSocketGame clientSocketGame) {
@@ -40,13 +42,25 @@ public class SurakartaView extends JFrame implements ActionListener {
         setContentPane(mainPanel);
         setTitle("Surakarta");
         setSize(1280, 720);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
         disableTextArea();
         setupBackground();
         setLayout(null);
         messagesTextArea.setLineWrap(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                try {
+                    clientSocketGame.exit();
+                } catch(IOException io) {
+                    System.out.println(io.getMessage());
+                }
+            }
+        });
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void disableTextArea() {
@@ -72,6 +86,12 @@ public class SurakartaView extends JFrame implements ActionListener {
         );
         imageContent.setSize(700,700);
         imageContent.setLocation(0,0);
+
+        turno = new JButton();
+        turno.setText("É A VEZ DO VERMELHO");
+//        turno.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        turno.setSize(200,40);
+        turno.setLocation(294,5);
 
         JButton p1 = new JButton();
         p1.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
@@ -268,7 +288,9 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q12);
 
         layeredPane.add(imageContent, 1);
+        //turno
 
+        layeredPane.add(turno, 0);
         layeredPane.add(p1, 0);
         layeredPane.add(p2, 0);
         layeredPane.add(p3, 0);
@@ -298,6 +320,10 @@ public class SurakartaView extends JFrame implements ActionListener {
         boardImagePanel.add(layeredPane);
     }
 
+    public void setTurno(String str) {
+        turno.setText(str);
+    }
+
     public void addMessageToTextArea(String message, String from) {
         messagesTextArea.append(from + ":" + message + "\r\n");
         playSound(Sounds.NEWMESSAGE.value);
@@ -323,15 +349,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         inputMessageTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    String payload = "{'communicationType': 'message', 'message': '"+name + ":" +inputMessageTextField.getText()+"', 'moveTo': null, 'dot': null}";
-                    clientSocketGame.sendMessage(payload);
-                } catch (IOException io) {
-                    System.out.println(io.getMessage());
-                }
-
-                addMessageToTextArea(inputMessageTextField.getText(), name);
-                inputMessageTextField.setText("");
+                sendMessageToServer();
             }
         });
     }
@@ -340,16 +358,21 @@ public class SurakartaView extends JFrame implements ActionListener {
         sendMessageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    clientSocketGame.sendMessage(inputMessageTextField.getText());
-                } catch (IOException io) {
-                    System.out.println(io.getMessage());
-                }
-
-                addMessageToTextArea(inputMessageTextField.getText(), name);
-                inputMessageTextField.setText("");
+                sendMessageToServer();
             }
         });
+    }
+
+    private void sendMessageToServer() {
+        try {
+            String payload = "{'communicationType': 'message', 'message': '"+name + ":" +inputMessageTextField.getText()+"', 'moveTo': null, 'dot': null, 'youTurn': null}";
+            clientSocketGame.sendMessage(payload);
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+        }
+
+        addMessageToTextArea(inputMessageTextField.getText(), name);
+        inputMessageTextField.setText("");
     }
 
     public boolean isStringInDotsEnum(String str) {
@@ -367,8 +390,6 @@ public class SurakartaView extends JFrame implements ActionListener {
         for(JButton button: dots) {
             if(button.getName().equals(buttonName)) {
                 currentButton = button;
-            } else {
-                System.out.println("PROBLEMA"+button.getName());
             }
         }
 
@@ -495,9 +516,11 @@ public class SurakartaView extends JFrame implements ActionListener {
         JButton currentButton = (JButton)e.getSource();
 
         movePlayer(currentButton.getName(), moveTo);
-        String payload = "{'communicationType': 'moviment', 'message': null, 'moveTo': '"+moveTo+"', 'dot': '"+currentButton.getName()+"'}";
+        String youTurn = "É a vez do "+(currentButton.getName().contains("red") ? "Azul": "Vermelho");
+        String payload = "{'communicationType': 'moviment', 'message': null, 'moveTo': '"+moveTo+"', 'dot': '"+currentButton.getName()+"', 'youTurn': '"+youTurn+"'}";
         try {
             clientSocketGame.sendMessage(payload);
+            setTurno(youTurn);
         } catch (IOException io) {
             System.out.println(io.getMessage());
         }

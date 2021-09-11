@@ -13,7 +13,6 @@ public class ClientSocketGame {
     private BufferedWriter bufferedWriter;
     private SurakartaView surakartaView;
     private String name;
-    private MovementDelegate delegate = null;
 
     public static void main(String[] args) throws IOException {
         ClientSocketGame clientSocketGame = new ClientSocketGame();
@@ -63,9 +62,10 @@ public class ClientSocketGame {
                     surakartaView.addMessageToTextArea("Servidor caiu! ", "Surikate 🤡");
                 } else {
                     CommunicationModel communicationModel = new Gson().fromJson(message, CommunicationModel.class);
-                    System.out.println(">::"+communicationModel.getCommunicationType());
+
                     if(communicationModel.getCommunicationType().equals("moviment")) {
                         surakartaView.movePlayer(communicationModel.getDot(), communicationModel.getMoveTo());
+                        surakartaView.setTurno(communicationModel.getYouTurn());
                     } else if(communicationModel.getCommunicationType().equals("message")) {
                         surakartaView.appendMessageToTextArea(communicationModel.getMessage());
                     }
