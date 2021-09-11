@@ -3,6 +3,7 @@
 O jogo contém peças onde o usuário pode controlar, remotamente.
 ### Funcionalidades
 - Chat
+- Som ao disparar mensagem
 - Controle de turno
 
 ## Player 1
