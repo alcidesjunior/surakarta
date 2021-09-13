@@ -9,12 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class SurakartaView extends JFrame implements ActionListener {
     private JPanel mainPanel;
@@ -48,17 +45,6 @@ public class SurakartaView extends JFrame implements ActionListener {
         setupBackground();
         setLayout(null);
         messagesTextArea.setLineWrap(true);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                try {
-                    clientSocketGame.exit();
-                } catch(IOException io) {
-                    System.out.println(io.getMessage());
-                }
-            }
-        });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -71,8 +57,8 @@ public class SurakartaView extends JFrame implements ActionListener {
         boardImagePanel.setLayout(new CardLayout());
 
         JLayeredPane layeredPane = new JLayeredPane();
-        JLabel imageContent = new JLabel();
 
+        JLabel imageContent = new JLabel();
         imageContent.setIcon(
                 new ImageIcon(
                         new ImageIcon("src/Files/backgroundBoard.jpg")
@@ -89,9 +75,8 @@ public class SurakartaView extends JFrame implements ActionListener {
 
         turno = new JButton();
         turno.setText("É A VEZ DO VERMELHO");
-//        turno.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
-        turno.setSize(200,40);
-        turno.setLocation(294,5);
+        turno.setLocation(180,5);
+        turno.setSize(300, 20);
 
         JButton p1 = new JButton();
         p1.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
@@ -288,7 +273,6 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q12);
 
         layeredPane.add(imageContent, 1);
-        //turno
 
         layeredPane.add(turno, 0);
         layeredPane.add(p1, 0);
@@ -318,6 +302,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         layeredPane.add(q12, 0);
 
         boardImagePanel.add(layeredPane);
+        boardImagePanel.updateUI();
     }
 
     public void setTurno(String str) {
@@ -386,6 +371,11 @@ public class SurakartaView extends JFrame implements ActionListener {
 
     public void movePlayer(String buttonName, String moveTo) {
         DotsPositionEnum dotsEnum = DotsPositionEnum.valueOf(moveTo);
+        if(buttonName.contains("red")) {
+            playSound(Sounds.RED.value);
+        } else {
+            playSound(Sounds.BLUE.value);
+        }
 
         for(JButton button: dots) {
             if(button.getName().equals(buttonName)) {
@@ -527,7 +517,9 @@ public class SurakartaView extends JFrame implements ActionListener {
     }
 
     private enum Sounds {
-        NEWMESSAGE("src/Files/new-message.wav");
+        NEWMESSAGE("src/Files/new-message.wav"),
+        BLUE("src/Files/blueSound.wav"),
+        RED("src/Files/redSound.wav");
 
         private String value;
         private Sounds(String value) {
