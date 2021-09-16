@@ -41,8 +41,8 @@ public class ClientSocketGame {
 
     public void sendMessage(String message) throws IOException {
         if(message.equals("Sair")) {
-            bufferedWriter.write("Desconectado 🔌");
-            surakartaView.addMessageToTextArea("Desconectado 🔌", "Surikate 🤡");
+            String payload = "{'communicationType': 'message', 'message': 'O jogador ["+name + "] Desistiu do jogo, você venceu!', 'moveTo': null, 'dot': null, 'youTurn': null}";
+            bufferedWriter.write(payload);
         } else {
             bufferedWriter.write(message+"\r\n");
         }
@@ -58,8 +58,9 @@ public class ClientSocketGame {
         while(!"Sair".equalsIgnoreCase(message)) {
             if(inputStreamReader.ready()) {
                 message = bufferedReaderTmp.readLine();
+
                 if(message.equals("Sair")) {
-                    surakartaView.addMessageToTextArea("Servidor caiu! ", "Surikate 🤡");
+                    surakartaView.appendMessageToTextArea("Servidor caiu! ");
                 } else {
                     CommunicationModel communicationModel = new Gson().fromJson(message, CommunicationModel.class);
 

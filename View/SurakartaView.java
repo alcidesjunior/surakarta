@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         setSize(1280, 720);
         setVisible(true);
         setResizable(false);
+        addWindowListener(new WindowHandler());
         disableTextArea();
         setupBackground();
         setLayout(null);
@@ -360,15 +363,6 @@ public class SurakartaView extends JFrame implements ActionListener {
         inputMessageTextField.setText("");
     }
 
-    public boolean isStringInDotsEnum(String str) {
-        for(DotsPositionEnum d : DotsPositionEnum.values()) {
-            if(d.name().equals(str)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void movePlayer(String buttonName, String moveTo) {
         DotsPositionEnum dotsEnum = DotsPositionEnum.valueOf(moveTo);
         if(buttonName.contains("red")) {
@@ -502,18 +496,31 @@ public class SurakartaView extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String moveTo = JOptionPane.showInputDialog("Para onde quer ir?");
+        String moveTo = JOptionPane.showInputDialog("Para onde quer ir? \nex: b3");
         JButton currentButton = (JButton)e.getSource();
+        if(contains(moveTo) && !moveTo.isEmpty()) {
+            movePlayer(currentButton.getName(), moveTo);
 
-        movePlayer(currentButton.getName(), moveTo);
-        String youTurn = "É a vez do "+(currentButton.getName().contains("red") ? "Azul": "Vermelho");
-        String payload = "{'communicationType': 'moviment', 'message': null, 'moveTo': '"+moveTo+"', 'dot': '"+currentButton.getName()+"', 'youTurn': '"+youTurn+"'}";
-        try {
-            clientSocketGame.sendMessage(payload);
-            setTurno(youTurn);
-        } catch (IOException io) {
-            System.out.println(io.getMessage());
+            String youTurn = "É a vez do " + (currentButton.getName().contains("red") ? "Azul" : "Vermelho");
+            String payload = "{'communicationType': 'moviment', 'message': null, 'moveTo': '" + moveTo + "', 'dot': '" + currentButton.getName() + "', 'youTurn': '" + youTurn + "'}";
+            try {
+                clientSocketGame.sendMessage(payload);
+                setTurno(youTurn);
+            } catch (IOException io) {
+                System.out.println(io.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Jogada inválida!");
         }
+    }
+
+    private boolean contains(String str) {
+        for (DotsPositionEnum d : DotsPositionEnum.values()) {
+            if (d.name().equals(str)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private enum Sounds {
@@ -540,5 +547,15 @@ public class SurakartaView extends JFrame implements ActionListener {
         e11,e12,
         f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,
         f11,f12
+    }
+
+    private class WindowHandler extends WindowAdapter {
+        public void windowClosing(WindowEvent evt) {
+            try {
+                clientSocketGame.exit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
