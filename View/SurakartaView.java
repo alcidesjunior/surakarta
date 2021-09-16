@@ -64,7 +64,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         JLabel imageContent = new JLabel();
         imageContent.setIcon(
                 new ImageIcon(
-                        new ImageIcon("src/Files/backgroundBoard.jpg")
+                        new ImageIcon(getClass().getClassLoader().getResource("Files/backgroundBoard.jpg"))
                                 .getImage()
                                 .getScaledInstance(
                                         700,
@@ -82,7 +82,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         turno.setSize(300, 20);
 
         JButton p1 = new JButton();
-        p1.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p1.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p1.setSize(40,40);
         p1.setLocation(148,150);
         p1.addActionListener(this);
@@ -90,7 +90,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p1);
 
         JButton p2 = new JButton();
-        p2.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p2.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p2.setSize(40,40);
         p2.setLocation(219,150);
         p2.addActionListener(this);
@@ -98,7 +98,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p2);
 
         JButton p3 = new JButton();
-        p3.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p3.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p3.setSize(40,40);
         p3.setLocation(294,150);
         p3.addActionListener(this);
@@ -107,7 +107,7 @@ public class SurakartaView extends JFrame implements ActionListener {
 
 
         JButton p4 = new JButton();
-        p4.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p4.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p4.setSize(40,40);
         p4.setLocation(365,150);
         p4.addActionListener(this);
@@ -115,7 +115,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p4);
 
         JButton p5 = new JButton();
-        p5.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p5.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p5.setSize(40,40);
         p5.setLocation(440,150);
         p5.addActionListener(this);
@@ -123,7 +123,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p5);
 
         JButton p6 = new JButton();
-        p6.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p6.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p6.setSize(40,40);
         p6.setLocation(511,150);
         p6.addActionListener(this);
@@ -131,7 +131,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p6);
 
         JButton p7 = new JButton();
-        p7.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p7.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p7.setSize(40,40);
         p7.setLocation(148,221);
         p7.addActionListener(this);
@@ -139,7 +139,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p7);
 
         JButton p8 = new JButton();
-        p8.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p8.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p8.setSize(40,40);
         p8.setLocation(219,221);
         p8.addActionListener(this);
@@ -147,7 +147,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p8);
 
         JButton p9 = new JButton();
-        p9.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p9.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p9.setSize(40,40);
         p9.setLocation(294,221);
         p9.addActionListener(this);
@@ -156,7 +156,7 @@ public class SurakartaView extends JFrame implements ActionListener {
 
 
         JButton p10 = new JButton();
-        p10.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p10.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p10.setSize(40,40);
         p10.setLocation(365,221);
         p10.addActionListener(this);
@@ -164,7 +164,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p10);
 
         JButton p11 = new JButton();
-        p11.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p11.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p11.setSize(40,40);
         p11.setLocation(440,221);
         p11.addActionListener(this);
@@ -172,7 +172,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p11);
 
         JButton p12 = new JButton();
-        p12.setIcon(new ImageIcon(new ImageIcon("src/Files/dotRed.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        p12.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotRed.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         p12.setSize(40,40);
         p12.setLocation(511,221);
         p12.addActionListener(this);
@@ -180,7 +180,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(p12);
 
         JButton q1 = new JButton();
-        q1.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q1.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q1.setSize(40,40);
         q1.setLocation(148,440);
         q1.addActionListener(this);
@@ -188,7 +188,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q1);
 
         JButton q2 = new JButton();
-        q2.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q2.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q2.setSize(40,40);
         q2.setLocation(219,440);
         q2.addActionListener(this);
@@ -196,7 +196,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q2);
 
         JButton q3 = new JButton();
-        q3.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q3.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q3.setSize(40,40);
         q3.setLocation(294,440);
         q3.addActionListener(this);
@@ -204,7 +204,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q3);
 
         JButton q4 = new JButton();
-        q4.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q4.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q4.setSize(40,40);
         q4.setLocation(365,440);
         q4.addActionListener(this);
@@ -212,7 +212,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q4);
 
         JButton q5 = new JButton();
-        q5.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q5.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q5.setSize(40,40);
         q5.setLocation(440,440);
         q5.addActionListener(this);
@@ -220,7 +220,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q5);
 
         JButton q6 = new JButton();
-        q6.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q6.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q6.setSize(40,40);
         q6.setLocation(511,440);
         q6.addActionListener(this);
@@ -228,7 +228,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q6);
 
         JButton q7 = new JButton();
-        q7.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q7.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q7.setSize(40,40);
         q7.setLocation(148,511);
         q7.addActionListener(this);
@@ -236,7 +236,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q7);
 
         JButton q8 = new JButton();
-        q8.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q8.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q8.setSize(40,40);
         q8.setLocation(219,511);
         q8.addActionListener(this);
@@ -244,7 +244,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q8);
 
         JButton q9 = new JButton();
-        q9.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q9.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q9.setSize(40,40);
         q9.setLocation(294,511);
         q9.addActionListener(this);
@@ -252,7 +252,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q9);
 
         JButton q10 = new JButton();
-        q10.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q10.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q10.setSize(40,40);
         q10.setLocation(365,511);
         q10.addActionListener(this);
@@ -260,7 +260,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q10);
 
         JButton q11 = new JButton();
-        q11.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q11.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q11.setSize(40,40);
         q11.setLocation(440,511);
         q11.addActionListener(this);
@@ -268,7 +268,7 @@ public class SurakartaView extends JFrame implements ActionListener {
         dots.add(q11);
 
         JButton q12 = new JButton();
-        q12.setIcon(new ImageIcon(new ImageIcon("src/Files/dotBlue.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        q12.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Files/dotBlue.png")).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
         q12.setSize(40,40);
         q12.setLocation(511,511);
         q12.addActionListener(this);
