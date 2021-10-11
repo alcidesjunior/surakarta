@@ -313,7 +313,7 @@ public class SurakartaView extends JFrame implements ActionListener {
     }
 
     public void addMessageToTextArea(String message, String from) {
-        messagesTextArea.append(from + ":" + message + "\r\n");
+//        messagesTextArea.append(from + ":" + message + "\r\n");
         playSound(Sounds.NEWMESSAGE.value);
     }
 
